@@ -1,0 +1,520 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets_wtf1 %}
+    <link rel="stylesheet" href="{{ asset('css/wtf.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}"/>
+{% endblock %}
+
+
+{% block body %}
+    <!-- start banner area -->
+    <div class="slider-area ptb--60">
+        <div class="container-fluid padding-contorler-am-slide">
+            <div class="row d-flex align-items-center">
+                <div class="col-lg-12 col-xl-6 order-2 order-xl-1 padding-contorler-am-slide-right">
+
+                    <div class="banner-top-rating sal-animate">
+                        <div class="banner-badge-top" data-sal-delay="300" data-sal="slide-up" data-sal-duration="500">
+                            <div class="icon">
+                                <img src="assets/images/icons/rating-2.png" alt="Icons Images">
+                            </div>
+                            <span class="subtitle">800+ satisfied customer</span>
+                        </div>
+
+                        <div class="banner-badge-top" data-sal-delay="500" data-sal="slide-up" data-sal-duration="500">
+                            <div class="icon">
+                                <img src="assets/images/icons/trophy.png" alt="Icons Images">
+                            </div>
+                            <span class="subtitle">#1 Top New theme</span>
+                        </div>
+                    </div>
+
+                    <h1 class="title theme-color" data-sal-delay="200" data-sal="slide-up"
+                        data-sal-duration="800">Unite your Municipality
+                    </h1>
+
+                    <h4 class="title theme-color" data-sal-delay="200" data-sal="slide-up"
+                        data-sal-duration="800">
+                        Connect, share, and act with ease.
+                    </h4>
+                    <p class="slide-disc" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800"
+                       style="font-size: 14px">
+                        Easily connect with your local municipality, share neighborhood updates, and access essential
+                        services all in one convenient platform.</p>
+                    <div class="button-group">
+                        <a class="btn btn-large btn-primary" href="#" data-sal-delay="400" data-sal="slide-up"
+                           data-sal-duration="800">check</a>
+                        <a class="btn btn-large btn-primary-alta" href="create.html" data-sal-delay="500"
+                           data-sal="slide-up" data-sal-duration="800">Create</a>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-xl-6 order-1 order-xl-2">
+
+                    <div class="banner-gallery-wrapper">
+                        <div class="banner-gallery-loop">
+                            <div class="banner-gallery banner-gallery-1 mt--90">
+                                <img src="assets/images/banner/banner-01.png" alt="Banner Images">
+                                <img src="assets/images/banner/banner-01.png" alt="Banner Images">
+                            </div>
+                            <div class="banner-gallery banner-gallery-2">
+                                <img src="assets/images/banner/banner-02.png" alt="Banner Images">
+                                <img src="assets/images/banner/banner-02.png" alt="Banner Images">
+                            </div>
+                            <div class="banner-gallery banner-gallery-3 mt--90">
+                                <img src="assets/images/banner/banner-03.png" alt="Banner Images">
+                                <img src="assets/images/banner/banner-03.png" alt="Banner Images">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End banner area -->
+
+    <!-- start nuron vedio area -->
+    <div class="vedio-area rn-section-gapTop">
+        <div class="container">
+            <div class="row mb--40">
+                <div class="title-area text-center">
+                    <h3 class="title mb--15">Meet with <span style="color: #c1c3c6">Citizen</span><span
+                                style="color: #ffcd1a">Hub</span></h3>
+                    <p class="subtitle">Empower your community with our all-in-one platform for municipal residents,
+                        integrating news, blogs, marketplace, and transportation resources.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 position-relative">
+                    <!-- <a id="play-video" class="video-play-button btn-large with-animation" href="#">
+                         <span></span>
+                     </a>-->
+                    <!-- start vedio image wrapper -->
+                    <div class="container">
+                        <img src="{{ asset('assets/images/banner/CitizenHubGif.gif') }}" alt=""
+                             style=" border-radius: 40px;"></img>
+                    </div>
+                    <!-- end vedio image wrapper -->
+                    <div id="video-overlay" class="video-overlay">
+                        <a class="video-overlay-close">×</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end nuron vedio area -->
+
+    <!-- top top-munisipality start -->
+    <div class="rn-top-top-seller-area nice-selector-transparent rn-section-gapTop">
+        <div class="container">
+            <div class="row  mb--30">
+                <div class="col-12 justify-sm-center d-flex">
+                    <h3 class="title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">municipality
+                        ranking in</h3>
+                    <select>
+                        <option data-display="7 day"> 1 day</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-sm-center g-5 top-seller-list-wrapper">
+                <!-- start single top-seller -->
+                {% for muni in top %}
+                    <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
+                         class="col-5 col-lg-3 col-md-4 col-sm-6 top-seller-list">
+                        <div class="top-seller-inner-one">
+                            <div class="top-seller-wrapper">
+                                <div class="thumbnail varified">
+                                    <a><img src="{{ asset('assets/images/logo/logoMuni.png') }}" style="height: 60px; width: 60px; object-fit: contain"
+                                            alt="Nft_Profile"></a>
+                                </div>
+                                <div class="top-seller-content">
+                                    <a>
+                                        <h6 class="name">{{ muni.municipalite.name }}</h6>
+                                    </a>
+                                    <span class="count-number">
+                                {{ muni.municipalite.goverment }}
+                            </span>
+                                    <span class="count-number" style="font-size: 11px">
+                                {{ muni.userCount }} Users
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- top top-munisipality end -->
+
+
+    <!-- news Area -->
+    <div class="rn-live-bidding-area rn-section-gapTop">
+        <div class="container">
+            <div class="row mb--50">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h3 class="title mb--0 live-bidding-title" data-sal-delay="150" data-sal="slide-up"
+                            data-sal-duration="800">Latest news</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb--40">
+                <div class="title-area text-center">
+                    <p class="subtitle">Stay informed with our latest news section, featuring updates from the past 48
+                        hours, keeping you up-to-date with what's happening in your community.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-one-slick slick-activation-03 slick-arrow-style-one rn-slick-dot-style slick-gutter-15">
+                        {% for news in newsList %}
+                            <div class="single-slide-product">
+                                <div class="product-style-one">
+                                    <div class="card-thumbnail">
+                                        {% if app.user %}
+                                            <a href="{{ path('app_news') }}"><img src="{{ news.imageUrl }}"
+                                                                                  alt="News_Image"
+                                                                                  style="min-height: 300px"></a>
+                                        {% else %}
+                                            <a href="{{ path('app_register') }}"><img src="{{ news.imageUrl }}"
+                                                                                      alt="News_Image"
+                                                                                      style="min-height: 300px"></a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="product-share-wrapper">
+                                        <div class="profile-share">
+                                            <a class="more-author-text"
+
+                                            {% if app.user %}
+                                                <a class="more-author-text"
+                                                   href="{{ path('app_news') }}">{{ news.sourceId }}</a>
+                                            {% else %}
+                                                <a class="more-author-text"
+                                                   href="{{ path('app_register') }}">{{ news.sourceId }}</a>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                    <a href="{{ path('app_news') }}"><span class="product-name"
+                                                                           style="font-size: 14px">{{ news.title }}</span></a>
+                                    <div class="bid-react-area">
+                                        <span style="font-size: 10px;">{{ news.date }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News Area End-->
+
+    <!-- blog service area -->
+    <div class="rn-service-area rn-section-gapTop">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb--50">
+                    <h3 class="title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Shaire the
+                        news</h3>
+                </div>
+            </div>
+
+            <div class="row g-5 justify-content-center">
+                <!-- start single service -->
+                <div class="col-xl-4 col-lg-2">
+                    <div class="rn-blog single-column mb--30" data-toggle="modal" data-target="#exampleModalCenters"
+                         data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">
+                        <div class="inner">
+                            <div class="thumbnail">
+
+                                {% if app.user %}
+                                    <a href="{{ path('app_blog') }}">
+                                        <img src="{{ asset('assets/images/banner/postImg.png') }}"
+                                             alt="Personal Portfolio Images">
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('app_register') }}">
+                                        <img src="{{ asset('assets/images/banner/postImg.png') }}"
+                                             alt="Personal Portfolio Images">
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                            <div class="content">
+                                <div class="category-info">
+                                    <div class="category-list">
+                                        <span>Omar Marrkachi</span>
+                                    </div>
+                                    <div class="meta">
+                                        <span><i class="feather-clock"></i>10/6/24 10:35 AM</span>
+                                    </div>
+                                </div>
+                                <p style="font-size: 18px">Attention il y'a une coupure d'electirsité le 13/6/24 a
+                                    20h35, elle sera de duree de 1h.<i class="feather-arrow-up-right"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End single service -->
+                <div class="col-xl-7 col-lg-2">
+                    <div class="rn-blog single-column mb--30" data-sal="slide-up" data-sal-delay="150"
+                         data-sal-duration="800">
+                        <div class="inner">
+                            <div class="content">
+                                <p style="font-size: 18px">Explore the heartbeat of your neighborhood through our
+                                    dynamic blog section. Here, every resident has a voice, sharing their stories,
+                                    experiences, and insights with the community. With the ability to publish posts
+                                    enriched with multiple images, the platform fosters vibrant storytelling and
+                                    community engagement. Connect with fellow residents within your municipality,
+                                    exchanging ideas and perspectives that shape the local narrative. Dive into a rich
+                                    tapestry of content, from local events to neighborhood initiatives, ensuring you're
+                                    always in tune with the pulse of your area. Engage with posts through comments,
+                                    sparking discussions, and forging connections that strengthen community bonds. Join
+                                    the conversation, share your thoughts, and be part of the collective story that
+                                    defines our shared experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End service area -->
+
+    <!-- New Products Area (salhi) -->
+    <div class="rn-new-items rn-section-gapTop">
+        <div class="container">
+            <div class="row mb--50 align-items-center">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <h3 class="title mb--0" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Marcket Place</h3>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--15">
+                    <div class="view-more-btn text-start text-sm-end" data-sal-delay="150" data-sal="slide-up"
+                         data-sal-duration="800">
+
+                        {% if app.user %}
+                            <a class="btn-transparent" href="{{ path('app_market_place_index') }}">VIEW ALL<i
+                                        data-feather="arrow-right"></i></a>
+                        {% else %}
+                            <a class="btn-transparent" href="{{ path('app_register') }}">VIEW ALL<i
+                                        data-feather="arrow-right"></i></a>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5 justify-content-center">
+                <div class="col-xl-7 col-lg-2">
+                    <div class="rn-blog single-column mb--30" data-sal="slide-up" data-sal-delay="150"
+                         data-sal-duration="800">
+                        <div class="inner">
+                            <div class="content">
+                                <p style="font-size: 18px">Welcome to our bustling marketplace where residents can buy,
+                                    sell, and connect seamlessly. Sellers can easily list their items for sale,
+                                    specifying categories and quantities, while buyers browse through a diverse array of
+                                    offerings. Engage in direct communication with sellers via chat to negotiate and
+                                    finalize purchases, ensuring a personalized and transparent transaction experience.
+                                    Upon purchase, buyers receive a contract, providing peace of mind and security.
+                                    Whether you're seeking unique treasures or decluttering your home, our marketplace
+                                    is the go-to destination for all your buying and selling needs. Join our vibrant
+                                    community and discover the convenience and excitement of local commerce right at
+                                    your fingertips.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- start single product -->
+                <div data-sal="slide-up" data-sal-delay="150" data-sal-duration="800"
+                     class="col-5 col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="product-style-one no-overlay">
+                        <div class="card-thumbnail">
+
+                            {% if app.user %}
+                                <a href="{{ path('app_market_place_index') }}">
+                                    <img src="{{ asset('assets/images/banner/prodImg.png') }}"
+                                         alt="Product image">
+                                </a>
+                            {% else %}
+                                <a href="{{ path('app_register') }}">
+                                    <img src="{{ asset('assets/images/banner/prodImg.png') }}"
+                                         alt="Product image">
+                                </a>
+                            {% endif %}
+
+                        </div>
+                        <div class="product-share-wrapper">
+                            <div class="profile-share">
+                                <a class="avatar" data-tooltip=omar><img
+                                            src="{{ asset('assets/images/icons/boy-avater.png') }}"
+                                            alt="User Image"></a>
+                                <a class="more-author-text">Omar Salhi</a>
+                            </div>
+                        </div>
+
+                        {% if app.user %}
+                            <a href="{{ path('app_market_place_index') }}"><span class="product-name"
+                                                                                 style="font-size: 28px">Phone</span></a>
+                        {% else %}
+                            <a href="{{ path('app_register') }}"><span class="product-name"
+                                                                                 style="font-size: 28px">Phone</span></a>
+                        {% endif %}
+
+                        <span class="latest-bid">Quantity : xx</span>
+                        <br>
+                        <span class="latest-bid">Category : Technologies</span>
+                        <div class="bid-react-area">
+                            <div class="last-bid">in Stock</div>
+                            <div class="react-area">
+                                <span class="number">price :  xxxx DT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Products Area end -->
+            </div>
+        </div>
+    </div>
+    <!-- New Products Area (salhi) End -->
+
+
+    <!-- transport service area -->
+    <div class="rn-service-area rn-section-gapTop">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb--50">
+                    <h3 class="title" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">Station area</h3>
+                </div>
+            </div>
+
+            <div class="row g-5 justify-content-center">
+                <!-- start single service -->
+                <div class="col-xl-6 col-lg-2">
+                    <div class="rn-blog single-column mb--30" data-toggle="modal" data-target="#exampleModalCenters"
+                         data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">
+                        <div class="inner">
+                            <div class="thumbnail">
+
+                                {% if app.user %}
+                                    <a href="{{ path('stationClient') }}">
+                                        <img src="{{ asset('assets/images/banner/mapImg.png') }}"
+                                             alt="Personal Portfolio Images">
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('app_register') }}">
+                                        <img src="{{ asset('assets/images/banner/mapImg.png') }}"
+                                             alt="Personal Portfolio Images">
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End single service -->
+                <div class="col-xl-5 col-lg-2">
+                    <div class="rn-blog single-column mb--30" data-sal="slide-up" data-sal-delay="150"
+                         data-sal-duration="800">
+                        <div class="inner">
+                            <div class="content">
+                                <p style="font-size: 18px">Navigate your city effortlessly with our interactive map and
+                                    comprehensive transportation listings. Explore stations and routes, along with
+                                    detailed information on transport types and schedules, ensuring you're always
+                                    informed and prepared for your journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End service area -->
+
+
+    <!-- start subscribe area -->
+    <div class="nu-subscribe-area rn-section-gapTop" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="subscribe-wrapper_1 text-center">
+                        <h3 class="title mb--10">Join our newsletter</h3>
+                        <p class="subtitle">Weekly FREE UI resource stroight to your inbox</p>
+                        <div class="subscribe-input-wrapper">
+                            <div class="input-group">
+                                <input type="email" class="form-control bg-color--2" placeholder="Your email"
+                                       aria-label="Recipient's email">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary-alta btn-outline-secondary" type="button">Subscribe
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end subscribe area -->
+    <!-- Modal -->
+    <div class="rn-popup-modal share-modal-wrapper modal fade" id="shareModal" tabindex="-1" aria-hidden="true">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i data-feather="x"></i>
+        </button>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content share-wrapper">
+                <div class="modal-header share-area">
+                    <h5 class="modal-title">Share this NFT</h5>
+                </div>
+                <div class="modal-body">
+                    <ul class="social-share-default">
+                        <li><a href="#"><span class="icon"><i data-feather="facebook"></i></span><span
+                                        class="text">facebook</span></a></li>
+                        <li><a href="#"><span class="icon"><i data-feather="twitter"></i></span><span
+                                        class="text">twitter</span></a></li>
+                        <li><a href="#"><span class="icon"><i data-feather="linkedin"></i></span><span
+                                        class="text">linkedin</span></a></li>
+                        <li><a href="#"><span class="icon"><i data-feather="instagram"></i></span><span class="text">instagram</span></a>
+                        </li>
+                        <li><a href="#"><span class="icon"><i data-feather="youtube"></i></span><span
+                                        class="text">youtube</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="rn-popup-modal report-modal-wrapper modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i data-feather="x"></i>
+        </button>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content report-content-wrapper">
+                <div class="modal-header report-modal-header">
+                    <h5 class="modal-title">Why are you reporting?
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <p>Describe why you think this item should be removed from marketplace</p>
+                    <div class="report-form-box">
+                        <h6 class="title">Message</h6>
+                        <textarea name="message" placeholder="Write issues"></textarea>
+                        <div class="report-button">
+                            <button type="button" class="btn btn-primary mr--10 w-auto">Report</button>
+                            <button type="button" class="btn btn-primary-alta w-auto" data-bs-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

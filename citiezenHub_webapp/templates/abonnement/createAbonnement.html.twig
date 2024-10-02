@@ -1,0 +1,133 @@
+
+{% extends 'base.html.twig' %}
+  {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/popUp.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/abonnement.css') }}">
+  {% endblock %}
+
+
+
+{%  block body %}
+
+     <div class="rn-breadcrumb-inner ptb--30">
+         <div class="container">
+             <div class="row align-items-center">
+                 <div class="col-lg-6 col-md-6 col-12">
+                     <h5 class="title text-center text-md-start">Ajouter a new abonnement</h5>
+                 </div>
+
+             </div>
+         </div>
+     </div>
+     <!-- create new product area -->
+     <div class="create-area rn-section-gapTop">
+         <div class="container">
+             <div class="row g-5">
+                 <div class="col-lg-3 offset-1 ml_md--0 ml_sm--0">
+                     <!-- file upload area -->
+                     <div class="upload-area">
+
+                         <div class="upload-formate mb--30">
+                             <h6 class="title">
+                                 Upload file
+                             </h6>
+                             <p class="formate">
+                                 Drag or choose your file to upload
+                             </p>
+                         </div>
+
+                         <div class="brows-file-wrapper">
+                             <!-- actual upload which is hidden -->
+                             <input name="createinputfile" id="createinputfile" type="file" class="inputfile"  />
+                             <img id="createfileImage" src="assets/images/portfolio/portfolio-05.jpg" alt="" data-black-overlay="6">
+
+{#                             <img id="createfileImage" src="{{ asset('/assets/images/portfolio/1.jpeg') }}"  data-black-overlay="6">#}
+
+                             <label for="createinputfile" title="No File Choosen">
+                                 <i class="feather-upload" id="btnTest"></i>
+                                 <span class="text-center">Choose a File</span>
+                                 <p class="text-center mt--10">PNG, GIF, WEBP, MP4 or MP3. <br>    Max 1Gb.</p>
+                             </label>
+                         </div>
+                     </div>
+                     <!-- end upoad file area -->
+
+                     <div class="mt--100 mt_sm--30 mt_md--30 d-none d-lg-block">
+                         <h5> Note: </h5>
+                         <span> Image accepted : <strong>22.5%</strong> </span> <br>
+                         <span> Image should be : <strong> in Portrait mode</strong></span>
+                     </div>
+
+                 </div>
+
+                 <div class="col-lg-7">
+                     <div class="form-wrapper-one">
+
+
+                         <form class="row" action="#">
+
+                             <div class="col-md-12">
+                                 <div class="input-box pb--20">
+                                     <label for="name" class="form-label"> Name</label>
+                                     <input name="name" id="name" placeholder="e. g. `Digital Awesome Game`">
+                                 </div>
+                             </div>
+
+                             <div class="col-md-12">
+                                 <div class="input-box pb--20">
+                                     <label for="name" class="form-label"> Last Name</label>
+                                     <input name="lastname" id="lastname" placeholder="e. g. `Digital Awesome Game`">
+                                 </div>
+                             </div>
+
+                             <div class="col-lg-12">
+                                 <div class="collection-single-wized">
+                                     <label class="title">Category</label>
+                                     <div class="create-collection-input">
+                                         <div class="nice-select mb--30" tabindex="0">
+                                             <span class="current">Subscription type</span>
+                                             <ul class="list" name="type" id="type">
+                                                 <li data-value="Annuel" data-display="Annuel" class="option selected focus">Annuel</li>
+                                                 <li data-value="Mensuelle" class="option">Mensuelle</li>
+
+                                             </ul>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+
+
+
+                             <div class="" >
+                                 <div class="input-box d-flex justify-content-end" >
+                                     <button class="btn btn-primary btn-large w-100" id="addAbnBtn" onclick="addPost(event)">Submit Item</button>
+ 
+                                 </div>
+                             </div>
+
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+
+
+    <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9998;"></div>
+    <div id="loadingLogo" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 700px; height: 700px;">
+        <img src="{{ asset('images/transport/aziz.gif') }}" alt="Loading...">
+    </div>
+ 
+   
+{% endblock %}
+
+
+
+  {% block scripts %}
+      <script src="{{ asset('js/AbonnementScript.js') }}"></script>
+      <script src="{{ asset('js/TransportScript.js') }}"></script>
+  {% endblock %}
+
+

@@ -1,0 +1,98 @@
+{% extends 'index.html.twig' %}
+
+
+
+{% block css %}
+    <link href="{{ asset('assetsAdmin/vendors/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+
+
+{% block body %}
+    <div class="content kanban-boards-content">
+        <div class="mb-9">
+            <div class="border-bottom border-translucent px-4 px-lg-6 pb-5">
+                <div class="row justify-content-between gy-4">
+                    <div class="col-auto">
+                        <h2>Goverments</h2>
+                    </div>
+                    <div class="col-auto d-flex flex-wrap gap-2">
+                        <button class="btn px-4 btn-phoenix-primary d-flex"><span
+                                    class="fa-solid fa-filter me-1"></span><span>Filter</span></button>
+                        <select class="form-select w-auto" id="select-deals">
+                            <option>Sort by - Last visited</option>
+                            <option>Sort by - Name (A - Z)</option>
+                            <option>Sort by - Name (Z - A)</option>
+                            <option>Sort by - Category</option>
+                            <option> Sort by - Date created</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            {% for gouvernement, municipalites,user in muni %}
+                <div class="px-4 px-lg-6 py-5 border-bottom border-translucent">
+                    <h4 class="mb-4">{{ gouvernement }}</h4>
+                    <div class="swiper-theme-container">
+                        <div class="swiper swiper-container theme-slider"
+                             data-swiper='{"slidesPerView":1,"spaceBetween":24,"speed":800,"breakpoints":{"576":{"slidesPerView":2},"1200":{"slidesPerView":3},"1540":{"slidesPerView":4}}}'>
+                            <div class="swiper-wrapper">
+
+                                {% for municipalite in municipalites %}
+                                    <div class="swiper-slide"><a class="text-decoration-none"
+                                                                 href="{{ path('Show_Details_Municipality',{id:municipalite.id}) }}">
+                                            <div class="card overflow-hidden bg-transparent h-100">
+                                                <div class="position-relative"><img class="w-100"
+                                                                                    src="{{ asset('images/user/municipalite.png') }}"
+                                                                                    style="height: 200px; width: 100px; object-fit: contain;"/>
+
+                                                    <div class="avatar-group position-absolute"
+                                                         style="bottom: 1rem; left: 1.5rem">
+                                                        {% for user in municipalite.user %}
+                                                            <div class="avatar avatar-m  border border-light-subtle rounded-circle">
+                                                                <img class="rounded-circle"
+                                                                     src="{{ asset('usersImg/' ~ user.image) }}">
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="card-body d-flex flex-column justify-content-between">
+                                                    <div>
+                                                        <h3 class="text-body">{{ municipalite.name }}</h3>
+                                                        <p class="text-body-tertiary mb-4">{{ municipalite.address }}</p>
+                                                    </div>
+                                                    <div class="d-flex gap-4">
+                                                        <h5 class="text-body"><span
+                                                                    class="fa-solid fa-user text-body-tertiary me-1"></span>{{ municipalite.size }}
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="swiper-nav">
+                            <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
+                            <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script src={{ asset('assetsAdmin/vendors/swiper/swiper-bundle.min.js') }}></script>
+{% endblock %}

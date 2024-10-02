@@ -1,0 +1,164 @@
+{% extends 'index.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        <div class="mb-9">
+            <div class="row g-3 mb-4">
+                <div class="col-auto">
+                    <h2 class="mb-0">Products</h2>
+                </div>
+            </div>
+
+            <div id="products"
+                 data-list='{"valueNames":["product","price","category","tags","vendor","time"],"page":10,"pagination":true}'>
+                <div class="mb-4">
+                    <div class="d-flex flex-wrap gap-3">
+                        <div class="search-box">
+                            <form class="position-relative" data-bs-toggle="search" data-bs-display="static"><input
+                                        class="form-control search-input search" type="search"
+                                        placeholder="Search products" aria-label="Search"/>
+                                <span class="fas fa-search search-box-icon"></span>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis border-top border-bottom border-translucent position-relative top-1">
+                    <div class="table-responsive scrollbar mx-n1 px-1">
+                        <table class="table fs-9 mb-0">
+                            <thead>
+                            <tr>
+                                <th class="sort white-space-nowrap text-center align-middle fs-10" scope="col"
+                                    style="width:70px;">
+                                    PRODUCT NAME
+                                </th>
+                                <th class="sort white-space-nowrap text-center align-middle   ps-4" scope="col"
+                                    style="width:350px;"
+                                    data-sort="product">IMAGES
+                                </th>
+                                <th class="sort align-middle text-center ps-4" scope="col" data-sort="price"
+                                    style="width:150px;">
+                                    PRICE
+                                </th>
+                                <th class="sort align-middle text-center ps-10" scope="col" data-sort="category"
+                                    style="width:150px;">CATEGORY
+                                </th>
+                                <th class="sort align-middle text-center ps-3" scope="col" data-sort="tags"
+                                    style="width:250px;">
+                                    STATE
+                                </th>
+                                {#                      <th class="sort align-middle fs-8 text-center ps-4" scope="col" style="width:125px;"></th> #}
+                                <th class="sort align-middle text-center ps-4" scope="col" data-sort="vendor"
+                                    style="width:200px;">
+                                    QUANTITY
+                                </th>
+                                <th class="sort align-middle text-center  ps-8" scope="col" data-sort="time"
+                                    style="width:50px;">
+                                    PUBLISHED ON
+                                </th>
+                                <th class="sort text-end align-middle pe-0 ps-4" scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="list" id="table-latest-review-body">
+                            {% for product in list %}
+                                <tr class="position-static" id="prod-{{ product.idProduct }}">
+                                    {#                      {{ asset('images/users/' ~ product.image) }} #}
+
+                                    <td class="align-middle time white-space-nowrap ps-0  projectName py-4"><h4
+                                                class="fw-bold fs-8">{{ product.name }}</h4></td>
+                                    <td class="align-middle text-center white-space-nowrap py-0">
+
+
+                                        <div style="font-size: 20px;">
+                                            {% set image_count = 0 %}
+                                            {% for images in product.images %}
+                                                {% if image_count < 4 %}
+                                                    <a class="dropdown-toggle dropdown-caret-none d-inline-block"
+                                                       href="#" role="button" data-bs-toggle="dropdown"
+                                                       aria-expanded="false" data-bs-auto-close="outside">
+                                                        <div class="avatar avatar-m rounded-circle">
+                                                            <img class="rounded-circle"
+                                                                 data-gallery="gallery-posts-{{ loop.parent.loop.index }}"
+                                                                 src="{{ asset("usersImg/"~images.path) }}" alt=""/>
+                                                        </div>
+                                                    </a>
+                                                    <div class="dropdown-menu avatar-dropdown-menu p-0 overflow-hidden"
+                                                         style="width: 420px;">
+                                                    </div>
+                                                    {% set image_count = image_count + 1 %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if product.images|length > 4 %}
+                                                <div class="avatar avatar-m rounded-circle">
+                                                    <!-- Adjusted size to avatar-m -->
+                                                    <div class="avatar-name rounded-circle">
+                                                        <span>+{{ product.images|length - 3 }}</span></div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+
+
+                                    </td>
+                                    <td class="price align-middle white-space-nowrap text-center  fw-bold text-body-tertiary ps-4">{{ product.price }}</td>
+                                    <td class="category align-middle  text-center white-space-nowrap text-body-quaternary fs-9 ps-10 fw-semibold">{{ product.category }}</td>
+                                    {% if product.state == 'verified' %}
+                                    <td class="tags align-middle review text-center pb-2 ps-3" style="min-width:225px;"><a
+                                                class="text-decoration-none"><span
+                                                    class="badge badge-phoenix fs-10 text-center  badge-phoenix-success">{{ product.state }}</span></a>
+                                        {% elseif product.state == 'unverified' %}
+                                    <td class="tags align-middle text-center  review pb-2 ps-3"
+                                        style="min-width:225px;"><a
+                                                class="text-decoration-none"><span
+                                                    class="badge badge-phoenix fs-10 text-center  badge-phoenix-danger">{{ product.state }}</span></a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="vendor align-middle text-start text-center  fw-semibold ps-4">{{ product.quantity }}</td>
+                                    <td class="time align-middle white-space-nowrap text-center text-body-tertiary text-opacity-85 ps-8">{{ product.timestamp | date('Y-m-d H:i:s') }}</td>
+                                    <td class="align-middle white-space-nowrap text-end pe-0 ps-4 btn-reveal-trigger">
+                                        <div class="btn-reveal-trigger position-static">
+                                            <button class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+                                                    type="button" data-bs-toggle="dropdown" data-boundary="window"
+                                                    aria-haspopup="true" aria-expanded="false"
+                                                    data-bs-reference="parent"><span
+                                                        class="fas fa-ellipsis-h fs-10"></span></button>
+                                            <div class="dropdown-menu dropdown-menu-end py-2">
+                                                <a class="dropdown-item text-danger"
+                                                   onclick="deleteProductAdmin({{ product.idProduct }})" href="#!">Remove</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div id="alert">
+
+                        </div>
+                    </div>
+                    <div class="row align-items-center justify-content-between py-2 pe-0 fs-9">
+                        <div class="col-auto d-flex">
+                            <p class="mb-0 d-none d-sm-block me-3 fw-semibold text-body"
+                               data-list-info="data-list-info"></p><a class="fw-semibold" href="#!" data-list-view="*">View
+                                all<span class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a><a
+                                    class="fw-semibold d-none" href="#!" data-list-view="less">View Less<span
+                                        class="fas fa-angle-right ms-1" data-fa-transform="down-1"></span></a>
+                        </div>
+                        <div class="col-auto d-flex">
+                            <button class="page-link" data-list-pagination="prev"><span
+                                        class="fas fa-chevron-left"></span></button>
+                            <ul class="mb-0 pagination"></ul>
+                            <button class="page-link pe-0" data-list-pagination="next"><span
+                                        class="fas fa-chevron-right"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+{% block js %}
+    <script src="{{ asset('js/product.js') }}"></script>
+{% endblock %}

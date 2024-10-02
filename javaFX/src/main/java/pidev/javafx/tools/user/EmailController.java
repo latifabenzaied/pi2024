@@ -1,0 +1,56 @@
+package pidev.javafx.tools.user;
+
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+
+import java.net.PasswordAuthentication;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+
+public class EmailController {
+
+     public static void sendEmail(String recipientEmail, String subject, String body) {
+
+        String host = "smtp.gmail.com";
+        int port = 587;
+        String username = "";
+        String password = "";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                return new javax.mail.PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("@.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject(subject);
+            message.setText(body);
+            message.setContent(body, "text/html");
+            Transport.send(message);
+
+
+
+        } catch (MessagingException e) {
+            // Gérez les erreurs de messagerie
+            e.printStackTrace();
+
+        }
+    }
+    public static String addDynamicText(String htmlContent, String dynamicText) {
+
+        return htmlContent.replace("[[dynamicText]]", dynamicText);
+    }
+}
